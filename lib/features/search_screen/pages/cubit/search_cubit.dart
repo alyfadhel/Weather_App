@@ -22,7 +22,7 @@ class SearchCubit extends Cubit<SearchState> {
         url: 'geo/1.0/direct',
         query: {
           'q': value,
-          'appid': '6854d6f800772d72b17a14497ee60f3b',
+          'appid': '611f83e7e77c4dc93085867ff3eef260',
         }).then((value) {
       name = value.data;
       WeatherAppCubit.get(context).getData(name[0]['name']);

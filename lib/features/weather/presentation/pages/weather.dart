@@ -307,7 +307,7 @@ class _WeatherScreenState extends State<WeatherScreen> {
                  shrinkWrap: true,
                  physics: const BouncingScrollPhysics(),
                  scrollDirection: Axis.horizontal,
-                 itemBuilder: (context, index) => getForecast(context,WeatherAppCubit.get(context).forecastModel!.list![index]),
+                 itemBuilder: (context, index) => getForecast(context,WeatherAppCubit.get(context).forecastModel!.list![index],WeatherAppCubit.get(context).weatherModel!),
                  separatorBuilder: (context, index) => const SizedBox(
                    width: 15.0,
                  ),
@@ -366,7 +366,7 @@ class _WeatherScreenState extends State<WeatherScreen> {
      ),
    );
 
-   Widget getForecast(context,ListModel listModel){
+   Widget getForecast(context,ListModel listModel,WeatherModel model){
      DateTime day = DateTime.parse(listModel.dtTxt!);
      String stringDay = DateFormat("EEEE").format(day);
      DateTime date = DateTime.parse(listModel.dtTxt!);

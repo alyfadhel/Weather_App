@@ -20,7 +20,7 @@ class WeatherAppCubit extends Cubit<WeatherAppStates> {
       url: 'data/2.5/weather',
       query: {
         "q" : initValue,
-        "appid": "6854d6f800772d72b17a14497ee60f3b",
+        "appid": "611f83e7e77c4dc93085867ff3eef260",
       },
     ).then((value) {
       weatherModel = WeatherModel.fromJson(value.data!);
@@ -40,7 +40,7 @@ class WeatherAppCubit extends Cubit<WeatherAppStates> {
       url: 'data/2.5/forecast',
       query: {
          "q": initValue,
-        "appid": "6854d6f800772d72b17a14497ee60f3b",
+        "appid": "611f83e7e77c4dc93085867ff3eef260",
       },
     ).then((value) {
       forecastModel = ForecastModel.fromJson(value.data);
