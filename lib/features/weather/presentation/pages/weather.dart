@@ -395,95 +395,111 @@ class _WeatherScreenState extends State<WeatherScreen> {
               const SizedBox(
                 height: 20.0,
               ),
-              SizedBox(
-                height: 250.0,
-                child: ConditionalBuilder(
-                  condition: WeatherAppCubit
-                      .get(context)
-                      .forecastModel != null,
-                  builder: (context) =>
-                      ListView.separated(
-                        shrinkWrap: true,
-                        physics: const BouncingScrollPhysics(),
-                        // scrollDirection: Axis.horizontal,
-                        itemBuilder: (context, index) =>
-                            getForecast(
-                                context,
-                                WeatherAppCubit
-                                    .get(context)
-                                    .forecastModel!
-                                    .list![index],
-                                WeatherAppCubit
-                                    .get(context)
-                                    .weatherModel!),
-                        separatorBuilder: (context, index) =>
-                        const SizedBox(
-                          width: 15.0,
+              Container(
+                height: 260.0,
+                width: double.infinity,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10.0),
+                  color: Colors.white.withOpacity(0.2),),
+                child: SizedBox(
+                  height: 250.0,
+                  child: ConditionalBuilder(
+                    condition: WeatherAppCubit
+                        .get(context)
+                        .forecastModel != null,
+                    builder: (context) =>
+                        ListView.separated(
+                         // shrinkWrap: true,
+                          physics: const BouncingScrollPhysics(),
+                          itemBuilder: (context, index) =>
+                              getForecast(
+                                  context,
+                                  WeatherAppCubit
+                                      .get(context)
+                                      .forecastModel!
+                                      .list![index],
+                                  WeatherAppCubit
+                                      .get(context)
+                                      .weatherModel!),
+                          separatorBuilder: (context, index) =>
+                          const SizedBox(
+                            width: 15.0,
+                          ),
+                          itemCount: WeatherAppCubit
+                              .get(context)
+                              .forecastModel!
+                              .list!
+                              .length,
                         ),
-                        itemCount: WeatherAppCubit
-                            .get(context)
-                            .forecastModel!
-                            .list!
-                            .length,
-                      ),
-                  fallback: (context) =>
-                  const Center(child: CircularProgressIndicator()),
+                    fallback: (context) =>
+                    const Center(child: CircularProgressIndicator()),
+                  ),
                 ),
               ),
-              Column(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Column(
-                    children: [
-                      Container(
-                        height: 80.0,
-                        width: 80.0,
-                        decoration: const BoxDecoration(
-                          image: DecorationImage(
-                            image: AssetImage('assets/images/sunrise1.gif'),
+              const SizedBox(
+                height: 20.0,
+              ),
+              Container(
+                height: 200.0,
+                width: double.infinity,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10.0),
+                  color: Colors.white.withOpacity(0.2),),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    Column(
+                      children: [
+                        Container(
+                          height: 80.0,
+                          width: 80.0,
+                          decoration: const BoxDecoration(
+                            image: DecorationImage(
+                              image: AssetImage('assets/images/sunrise1.gif'),
+                            ),
                           ),
                         ),
-                      ),
-                      Text(
-                        'Sunrise : ${DateTime.fromMillisecondsSinceEpoch(
-                            model.sys!.sunrise! * 1000)}',
-                        style: Theme
-                            .of(context)
-                            .textTheme
-                            .bodyMedium!
-                            .copyWith(
-                            color: Colors.white.withOpacity(.5),
-                            fontWeight: FontWeight.bold,
-                            fontStyle: FontStyle.italic),
-                      ),
-                    ],
-                  ),
-                  Column(
-                    children: [
-                      Container(
-                        height: 80.0,
-                        width: 80.0,
-                        decoration: const BoxDecoration(
-                          image: DecorationImage(
-                            image: AssetImage('assets/images/moon.gif'),
+                        Text(
+                          'Sunrise : ${DateTime.fromMillisecondsSinceEpoch(
+                              model.sys!.sunrise! * 1000)}',
+                          style: Theme
+                              .of(context)
+                              .textTheme
+                              .bodyMedium!
+                              .copyWith(
+                              color: Colors.white.withOpacity(.5),
+                              fontWeight: FontWeight.bold,
+                              fontStyle: FontStyle.italic),
+                        ),
+                      ],
+                    ),
+                    Column(
+                      children: [
+                        Container(
+                          height: 80.0,
+                          width: 80.0,
+                          decoration: const BoxDecoration(
+                            image: DecorationImage(
+                              image: AssetImage('assets/images/moon.gif'),
+                            ),
                           ),
                         ),
-                      ),
-                      Text(
-                        'Sunset : ${DateTime.fromMillisecondsSinceEpoch(
-                            model.sys!.sunset! * 1000)}',
-                        style: Theme
-                            .of(context)
-                            .textTheme
-                            .bodyMedium!
-                            .copyWith(
-                            color: Colors.white.withOpacity(.5),
-                            fontWeight: FontWeight.bold,
-                            fontStyle: FontStyle.italic),
-                      ),
-                    ],
-                  ),
-                ],
+                        Text(
+                          'Sunset : ${DateTime.fromMillisecondsSinceEpoch(
+                              model.sys!.sunset! * 1000)}',
+                          style: Theme
+                              .of(context)
+                              .textTheme
+                              .bodyMedium!
+                              .copyWith(
+                              color: Colors.white.withOpacity(.5),
+                              fontWeight: FontWeight.bold,
+                              fontStyle: FontStyle.italic),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
               ),
             ],
           ),
