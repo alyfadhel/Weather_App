@@ -542,7 +542,7 @@ class _WeatherScreenState extends State<WeatherScreen> {
                   listModel.weather![0].description.toString(),
                   style: TextStyle(
                     color: Colors.white.withOpacity(.5),
-                    fontSize: 12.8,
+                    fontSize: 12.0,
                   ),
                 ),
               ],
