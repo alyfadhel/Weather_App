@@ -36,15 +36,11 @@ class _WeatherScreenState extends State<WeatherScreen> {
               child: BlocConsumer<SearchCubit, SearchState>(
                 listener: (context, state) {},
                 builder: (context, state) {
-                  var form = SearchCubit
-                      .get(context)
-                      .name;
+                  var form = SearchCubit.get(context).name;
                   return Column(
                     children: [
                       MyFormField(
-                        controller: SearchCubit
-                            .get(context)
-                            .searchController,
+                        controller: SearchCubit.get(context).searchController,
                         textInputType: TextInputType.text,
                         prefix: Icons.search,
                         radius: 10.0,
@@ -57,18 +53,17 @@ class _WeatherScreenState extends State<WeatherScreen> {
                       Expanded(
                         child: ConditionalBuilder(
                           condition: state is! WeatherAppSearchLoadingState,
-                          builder: (context) =>
-                              ListView.separated(
-                                itemBuilder: (context, index) =>
-                                    getCountry(form, context),
-                                separatorBuilder: (context, index) =>
+                          builder: (context) => ListView.separated(
+                            itemBuilder: (context, index) =>
+                                getCountry(form, context),
+                            separatorBuilder: (context, index) =>
                                 const SizedBox(
-                                  height: 20.0,
-                                ),
-                                itemCount: form.length,
-                              ),
+                              height: 20.0,
+                            ),
+                            itemCount: form.length,
+                          ),
                           fallback: (context) =>
-                          const Center(child: CircularProgressIndicator()),
+                              const Center(child: CircularProgressIndicator()),
                         ),
                       ),
                     ],
@@ -83,21 +78,20 @@ class _WeatherScreenState extends State<WeatherScreen> {
           ),
           body: ConditionalBuilder(
             condition: cubit.weatherModel != null,
-            builder: (context) =>
-                RefreshIndicator(
-                  onRefresh: () async {
-                    cubit.getData(
-                      initValue,
-                    );
-                  },
-                  child: ListView.builder(
-                    itemBuilder: (context, index) =>
-                        getTemp(cubit.weatherModel!, context),
-                    itemCount: cubit.weatherModel!.weather.length,
-                  ),
-                ),
+            builder: (context) => RefreshIndicator(
+              onRefresh: () async {
+                cubit.getData(
+                  initValue,
+                );
+              },
+              child: ListView.builder(
+                itemBuilder: (context, index) =>
+                    getTemp(cubit.weatherModel!, context),
+                itemCount: cubit.weatherModel!.weather.length,
+              ),
+            ),
             fallback: (context) =>
-            const Center(child: CircularProgressIndicator()),
+                const Center(child: CircularProgressIndicator()),
           ),
         );
       },
@@ -121,27 +115,19 @@ class _WeatherScreenState extends State<WeatherScreen> {
                   children: [
                     Text(
                       '${model.sys!.country}',
-                      style: Theme
-                          .of(context)
-                          .textTheme
-                          .headline3!
-                          .copyWith(
-                        color: Colors.white.withOpacity(.7),
-                        fontWeight: FontWeight.w800,
-                      ),
+                      style: Theme.of(context).textTheme.headline3!.copyWith(
+                            color: Colors.white.withOpacity(.7),
+                            fontWeight: FontWeight.w800,
+                          ),
                     ),
                     Text(
                       '${model.name}',
-                      style: Theme
-                          .of(context)
-                          .textTheme
-                          .bodyLarge!
-                          .copyWith(
-                        color: Colors.white.withOpacity(
-                          .4,
-                        ),
-                        fontSize: 20.0,
-                      ),
+                      style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+                            color: Colors.white.withOpacity(
+                              .4,
+                            ),
+                            fontSize: 20.0,
+                          ),
                     ),
                     Stack(
                       alignment: AlignmentDirectional.topEnd,
@@ -149,62 +135,45 @@ class _WeatherScreenState extends State<WeatherScreen> {
                         Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: Text(
-                            'Feels Like : ${model.main!.feelsLike!.round() -
-                                273.15.round()}',
+                            'Feels Like : ${model.main!.feelsLike!.round() - 273.15.round()}',
                             style:
-                            Theme
-                                .of(context)
-                                .textTheme
-                                .bodyLarge!
-                                .copyWith(
-                              color: Colors.white.withOpacity(
-                                .4,
-                              ),
-                              fontSize: 20.0,
-                            ),
+                                Theme.of(context).textTheme.bodyLarge!.copyWith(
+                                      color: Colors.white.withOpacity(
+                                        .4,
+                                      ),
+                                      fontSize: 20.0,
+                                    ),
                           ),
                         ),
                         Text(
                           'O',
                           style:
-                          Theme
-                              .of(context)
-                              .textTheme
-                              .bodyLarge!
-                              .copyWith(
-                            color: Colors.white.withOpacity(
-                              .4,
-                            ),
-                            fontSize: 10.0,
-                          ),
+                              Theme.of(context).textTheme.bodyLarge!.copyWith(
+                                    color: Colors.white.withOpacity(
+                                      .4,
+                                    ),
+                                    fontSize: 10.0,
+                                  ),
                         ),
                       ],
                     ),
                     Text(
                       'Humidity : ${model.main!.humidity}',
-                      style: Theme
-                          .of(context)
-                          .textTheme
-                          .bodyLarge!
-                          .copyWith(
-                        color: Colors.white.withOpacity(
-                          .4,
-                        ),
-                        fontSize: 20.0,
-                      ),
+                      style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+                            color: Colors.white.withOpacity(
+                              .4,
+                            ),
+                            fontSize: 20.0,
+                          ),
                     ),
                     Text(
                       'Pressure  : ${model.main!.pressure}',
-                      style: Theme
-                          .of(context)
-                          .textTheme
-                          .bodyLarge!
-                          .copyWith(
-                        color: Colors.white.withOpacity(
-                          .4,
-                        ),
-                        fontSize: 20.0,
-                      ),
+                      style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+                            color: Colors.white.withOpacity(
+                              .4,
+                            ),
+                            fontSize: 20.0,
+                          ),
                     ),
                     const SizedBox(
                       height: 20.0,
@@ -218,32 +187,29 @@ class _WeatherScreenState extends State<WeatherScreen> {
                             Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: Text(
-                                'Temp Min : ${model.main!.tempMin!.round() -
-                                    273.15.round()}',
-                                style: Theme
-                                    .of(context)
+                                'Temp Min : ${model.main!.tempMin!.round() - 273.15.round()}',
+                                style: Theme.of(context)
                                     .textTheme
                                     .bodyLarge!
                                     .copyWith(
-                                  color: Colors.white.withOpacity(
-                                    .4,
-                                  ),
-                                  fontSize: 20.0,
-                                ),
+                                      color: Colors.white.withOpacity(
+                                        .4,
+                                      ),
+                                      fontSize: 20.0,
+                                    ),
                               ),
                             ),
                             Text(
                               'O',
-                              style: Theme
-                                  .of(context)
+                              style: Theme.of(context)
                                   .textTheme
                                   .bodyLarge!
                                   .copyWith(
-                                color: Colors.white.withOpacity(
-                                  .4,
-                                ),
-                                fontSize: 10.0,
-                              ),
+                                    color: Colors.white.withOpacity(
+                                      .4,
+                                    ),
+                                    fontSize: 10.0,
+                                  ),
                             ),
                           ],
                         ),
@@ -256,32 +222,29 @@ class _WeatherScreenState extends State<WeatherScreen> {
                             Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: Text(
-                                'Temp Max : ${model.main!.tempMax!.round() -
-                                    273.15.round()}',
-                                style: Theme
-                                    .of(context)
+                                'Temp Max : ${model.main!.tempMax!.round() - 273.15.round()}',
+                                style: Theme.of(context)
                                     .textTheme
                                     .bodyLarge!
                                     .copyWith(
-                                  color: Colors.white.withOpacity(
-                                    .4,
-                                  ),
-                                  fontSize: 20.0,
-                                ),
+                                      color: Colors.white.withOpacity(
+                                        .4,
+                                      ),
+                                      fontSize: 20.0,
+                                    ),
                               ),
                             ),
                             Text(
                               'O',
-                              style: Theme
-                                  .of(context)
+                              style: Theme.of(context)
                                   .textTheme
                                   .bodyLarge!
                                   .copyWith(
-                                color: Colors.white.withOpacity(
-                                  .4,
-                                ),
-                                fontSize: 10.0,
-                              ),
+                                    color: Colors.white.withOpacity(
+                                      .4,
+                                    ),
+                                    fontSize: 10.0,
+                                  ),
                             ),
                           ],
                         ),
@@ -293,16 +256,12 @@ class _WeatherScreenState extends State<WeatherScreen> {
                         Text(
                           'Deg : ${model.wind!.deg}',
                           style:
-                          Theme
-                              .of(context)
-                              .textTheme
-                              .bodyLarge!
-                              .copyWith(
-                            color: Colors.white.withOpacity(
-                              .4,
-                            ),
-                            fontSize: 20.0,
-                          ),
+                              Theme.of(context).textTheme.bodyLarge!.copyWith(
+                                    color: Colors.white.withOpacity(
+                                      .4,
+                                    ),
+                                    fontSize: 20.0,
+                                  ),
                         ),
                         const SizedBox(
                           width: 15.0,
@@ -310,16 +269,12 @@ class _WeatherScreenState extends State<WeatherScreen> {
                         Text(
                           'Speed : ${model.wind!.speed}',
                           style:
-                          Theme
-                              .of(context)
-                              .textTheme
-                              .bodyLarge!
-                              .copyWith(
-                            color: Colors.white.withOpacity(
-                              .4,
-                            ),
-                            fontSize: 20.0,
-                          ),
+                              Theme.of(context).textTheme.bodyLarge!.copyWith(
+                                    color: Colors.white.withOpacity(
+                                      .4,
+                                    ),
+                                    fontSize: 20.0,
+                                  ),
                         ),
                       ],
                     ),
@@ -350,28 +305,25 @@ class _WeatherScreenState extends State<WeatherScreen> {
                                 Padding(
                                   padding: const EdgeInsets.all(8.0),
                                   child: Text(
-                                    '${model.main!.temp!.round() -
-                                        273.15.round()}',
-                                    style: Theme
-                                        .of(context)
+                                    '${model.main!.temp!.round() - 273.15.round()}',
+                                    style: Theme.of(context)
                                         .textTheme
                                         .headline2!
                                         .copyWith(
-                                      color: Colors.white.withOpacity(.5),
-                                      fontWeight: FontWeight.w800,
-                                    ),
+                                          color: Colors.white.withOpacity(.5),
+                                          fontWeight: FontWeight.w800,
+                                        ),
                                   ),
                                 ),
                                 Text(
                                   'O',
-                                  style: Theme
-                                      .of(context)
+                                  style: Theme.of(context)
                                       .textTheme
                                       .bodyText1!
                                       .copyWith(
-                                      color: Colors.white.withOpacity(.5),
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 20.0),
+                                          color: Colors.white.withOpacity(.5),
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 20.0),
                                 ),
                               ],
                             ),
@@ -399,39 +351,32 @@ class _WeatherScreenState extends State<WeatherScreen> {
                 width: double.infinity,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10.0),
-                  color: Colors.white.withOpacity(0.2),),
+                  color: Colors.white.withOpacity(0.2),
+                ),
                 child: SizedBox(
                   height: 250.0,
                   child: ConditionalBuilder(
-                    condition: WeatherAppCubit
-                        .get(context)
-                        .forecastModel != null,
-                    builder: (context) =>
-                        ListView.separated(
-                         // shrinkWrap: true,
-                          physics: const BouncingScrollPhysics(),
-                          itemBuilder: (context, index) =>
-                              getForecast(
-                                  context,
-                                  WeatherAppCubit
-                                      .get(context)
-                                      .forecastModel!
-                                      .list![index],
-                                  WeatherAppCubit
-                                      .get(context)
-                                      .weatherModel!),
-                          separatorBuilder: (context, index) =>
-                          const SizedBox(
-                            width: 15.0,
-                          ),
-                          itemCount: WeatherAppCubit
-                              .get(context)
+                    condition:
+                        WeatherAppCubit.get(context).forecastModel != null,
+                    builder: (context) => ListView.separated(
+                      // shrinkWrap: true,
+                      physics: const BouncingScrollPhysics(),
+                      itemBuilder: (context, index) => getForecast(
+                          context,
+                          WeatherAppCubit.get(context)
                               .forecastModel!
-                              .list!
-                              .length,
-                        ),
+                              .list![index],
+                          WeatherAppCubit.get(context).weatherModel!),
+                      separatorBuilder: (context, index) => const SizedBox(
+                        width: 15.0,
+                      ),
+                      itemCount: WeatherAppCubit.get(context)
+                          .forecastModel!
+                          .list!
+                          .length,
+                    ),
                     fallback: (context) =>
-                    const Center(child: CircularProgressIndicator()),
+                        const Center(child: CircularProgressIndicator()),
                   ),
                 ),
               ),
@@ -443,7 +388,8 @@ class _WeatherScreenState extends State<WeatherScreen> {
                 width: double.infinity,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10.0),
-                  color: Colors.white.withOpacity(0.2),),
+                  color: Colors.white.withOpacity(0.2),
+                ),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
@@ -459,16 +405,14 @@ class _WeatherScreenState extends State<WeatherScreen> {
                           ),
                         ),
                         Text(
-                          'Sunrise : ${DateTime.fromMillisecondsSinceEpoch(
-                              model.sys!.sunrise! * 1000)}',
-                          style: Theme
-                              .of(context)
+                          'Sunrise : ${DateTime.fromMillisecondsSinceEpoch(model.sys!.sunrise! * 1000)}',
+                          style: Theme.of(context)
                               .textTheme
                               .bodyMedium!
                               .copyWith(
-                              color: Colors.white.withOpacity(.5),
-                              fontWeight: FontWeight.bold,
-                              fontStyle: FontStyle.italic),
+                                  color: Colors.white.withOpacity(.5),
+                                  fontWeight: FontWeight.bold,
+                                  fontStyle: FontStyle.italic),
                         ),
                       ],
                     ),
@@ -484,16 +428,14 @@ class _WeatherScreenState extends State<WeatherScreen> {
                           ),
                         ),
                         Text(
-                          'Sunset : ${DateTime.fromMillisecondsSinceEpoch(
-                              model.sys!.sunset! * 1000)}',
-                          style: Theme
-                              .of(context)
+                          'Sunset : ${DateTime.fromMillisecondsSinceEpoch(model.sys!.sunset! * 1000)}',
+                          style: Theme.of(context)
                               .textTheme
                               .bodyMedium!
                               .copyWith(
-                              color: Colors.white.withOpacity(.5),
-                              fontWeight: FontWeight.bold,
-                              fontStyle: FontStyle.italic),
+                                  color: Colors.white.withOpacity(.5),
+                                  fontWeight: FontWeight.bold,
+                                  fontStyle: FontStyle.italic),
                         ),
                       ],
                     ),
@@ -512,98 +454,86 @@ class _WeatherScreenState extends State<WeatherScreen> {
     String stringDate = DateFormat("h a").format(date);
     return Column(
       children: [
-      Row(
-        children: [
-          const Expanded(
-            child: Image(
-                height: 80.0,
-                width: 80.0,
-                image: AssetImage('assets/images/sun.gif')),
-          ),
-          const SizedBox(
-            width: 20.0,
-          ),
-          Expanded(
-            child: Column(
-              children: [
-                Text(
-                  stringDate,
-                  style: const TextStyle(
-                    color: Colors.white,
-                  ),
-                ),
-                Text(
-                  stringDay,
-                  style: const TextStyle(
-                    color: Colors.white,
-                  ),
-                ),
-                Text(
-                  listModel.weather![0].description.toString(),
-                  style: TextStyle(
-                    color: Colors.white.withOpacity(.5),
-                    fontSize: 12.0,
-                  ),
-                ),
-              ],
+        Row(
+          children: [
+            const Expanded(
+              child: Image(
+                  height: 80.0,
+                  width: 80.0,
+                  image: AssetImage('assets/images/sun.gif')),
             ),
-          ),
-          const SizedBox(
-            width: 40.0,
-          ),
-          Expanded(
-            child: Row(
-              children: [
-                Text(
-                  '${listModel.main!.tempMin.round() - 273.15.round()}',
-                  style: Theme
-                      .of(context)
-                      .textTheme
-                      .bodyLarge!
-                      .copyWith(
-                    color: Colors.white.withOpacity(
-                      .4,
-                    ),
-                    fontSize: 20.0,
-                  ),
-                ),
-                const SizedBox(
-                  width: 8.0,
-                ),
-                Text(
-                  '/',
-                  style: Theme
-                      .of(context)
-                      .textTheme
-                      .bodyLarge!
-                      .copyWith(
-                    color: Colors.white.withOpacity(
-                      .4,
-                    ),
-                    fontSize: 20.0,
-                  ),
-                ),
-                const SizedBox(
-                  width: 8.0,
-                ),
-                Text(
-                  '${listModel.main!.tempMax.round() - 273.15.round()}',
-                  style: Theme
-                      .of(context)
-                      .textTheme
-                      .bodyLarge!
-                      .copyWith(
-                    color: Colors.white.withOpacity(
-                      .4,
-                    ),
-                    fontSize: 20.0,
-                  ),
-                ),
-              ],
+            const SizedBox(
+              width: 20.0,
             ),
-          ),
-        ],
-      )
+            Expanded(
+              child: Column(
+                children: [
+                  Text(
+                    stringDate,
+                    style: const TextStyle(
+                      color: Colors.white,
+                    ),
+                  ),
+                  Text(
+                    stringDay,
+                    style: const TextStyle(
+                      color: Colors.white,
+                    ),
+                  ),
+                  Text(
+                    listModel.weather![0].description.toString(),
+                    style: TextStyle(
+                      color: Colors.white.withOpacity(.5),
+                      fontSize: 12.0,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            const SizedBox(
+              width: 40.0,
+            ),
+            Expanded(
+              child: Row(
+                children: [
+                  Text(
+                    '${listModel.main!.tempMin.round() - 273.15.round()}',
+                    style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+                          color: Colors.white.withOpacity(
+                            .4,
+                          ),
+                          fontSize: 20.0,
+                        ),
+                  ),
+                  const SizedBox(
+                    width: 8.0,
+                  ),
+                  Text(
+                    '/',
+                    style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+                          color: Colors.white.withOpacity(
+                            .4,
+                          ),
+                          fontSize: 20.0,
+                        ),
+                  ),
+                  const SizedBox(
+                    width: 8.0,
+                  ),
+                  Text(
+                    '${listModel.main!.tempMax.round() - 273.15.round()}',
+                    style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+                          color: Colors.white.withOpacity(
+                            .4,
+                          ),
+                          fontSize: 20.0,
+                        ),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        )
       ],
     );
   }
@@ -615,12 +545,7 @@ class _WeatherScreenState extends State<WeatherScreen> {
         onTap: () {
           debugPrint('onTaaaaaaaaaaaaaap : $model');
           debugPrint(
-              'onTaaaaaaaaaaaa: ${WeatherAppCubit
-                  .get(context)
-                  .weatherModel!
-                  .main!
-                  .temp!
-                  .round() - 273.15.round()}');
+              'onTaaaaaaaaaaaa: ${WeatherAppCubit.get(context).weatherModel!.main!.temp!.round() - 273.15.round()}');
           Navigator.push(
             context,
             MaterialPageRoute(
@@ -635,15 +560,11 @@ class _WeatherScreenState extends State<WeatherScreen> {
               Expanded(
                 child: Text(
                   '${model[0]['name']}',
-                  style: Theme
-                      .of(context)
-                      .textTheme
-                      .bodyText1!
-                      .copyWith(
-                    fontStyle: FontStyle.italic,
-                    fontSize: 15.0,
-                    fontWeight: FontWeight.bold,
-                  ),
+                  style: Theme.of(context).textTheme.bodyText1!.copyWith(
+                        fontStyle: FontStyle.italic,
+                        fontSize: 15.0,
+                        fontWeight: FontWeight.bold,
+                      ),
                 ),
               ),
             const SizedBox(
@@ -653,15 +574,11 @@ class _WeatherScreenState extends State<WeatherScreen> {
               Expanded(
                 child: Text(
                   model[0]['country'],
-                  style: Theme
-                      .of(context)
-                      .textTheme
-                      .bodyText1!
-                      .copyWith(
-                    fontStyle: FontStyle.italic,
-                    fontSize: 15.0,
-                    fontWeight: FontWeight.bold,
-                  ),
+                  style: Theme.of(context).textTheme.bodyText1!.copyWith(
+                        fontStyle: FontStyle.italic,
+                        fontSize: 12.0,
+                        fontWeight: FontWeight.bold,
+                      ),
                 ),
               ),
             const SizedBox(
@@ -671,15 +588,11 @@ class _WeatherScreenState extends State<WeatherScreen> {
               Expanded(
                 child: Text(
                   '${model[0]['state']}',
-                  style: Theme
-                      .of(context)
-                      .textTheme
-                      .bodyText1!
-                      .copyWith(
-                    fontStyle: FontStyle.italic,
-                    fontSize: 15.0,
-                    fontWeight: FontWeight.bold,
-                  ),
+                  style: Theme.of(context).textTheme.bodyText1!.copyWith(
+                        fontStyle: FontStyle.italic,
+                        fontSize: 12.0,
+                        fontWeight: FontWeight.bold,
+                      ),
                 ),
               ),
           ],
