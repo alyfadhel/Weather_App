@@ -104,15 +104,14 @@ class _WeatherScreenState extends State<WeatherScreen> {
     );
   }
 
-  Widget getTemp(WeatherModel model, context) =>
-      Container(
+  Widget getTemp(WeatherModel model, context) => Container(
         alignment: AlignmentDirectional.center,
         padding: const EdgeInsets.all(20.0),
         child: SingleChildScrollView(
           child: Column(
             children: [
               Container(
-                height: 260.0,
+                height: 280.0,
                 width: double.infinity,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10.0),
@@ -521,6 +520,9 @@ class _WeatherScreenState extends State<WeatherScreen> {
                 width: 80.0,
                 image: AssetImage('assets/images/sun.gif')),
           ),
+          const SizedBox(
+            width: 20.0,
+          ),
           Expanded(
             child: Column(
               children: [
@@ -540,11 +542,14 @@ class _WeatherScreenState extends State<WeatherScreen> {
                   listModel.weather![0].description.toString(),
                   style: TextStyle(
                     color: Colors.white.withOpacity(.5),
-                    fontSize: 18.0,
+                    fontSize: 13.6,
                   ),
                 ),
               ],
             ),
+          ),
+          const SizedBox(
+            width: 40.0,
           ),
           Expanded(
             child: Row(
