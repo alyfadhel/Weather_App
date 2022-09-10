@@ -8,4 +8,4 @@ shared_preferences: ^2.0.15
 dio: ^4.0.6
 bloc: ^8.1.0
 flutter_bloc: ^8.1.1
-flutter_polyline_points: ^1.0.0
+
