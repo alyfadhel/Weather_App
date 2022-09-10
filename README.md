@@ -13,3 +13,8 @@ dio: ^4.0.6
 bloc: ^8.1.0
 flutter_bloc: ^8.1.1
 
+
+
+https://user-images.githubusercontent.com/79104875/189492418-f7ebc3e3-003a-4a4b-843e-878b0a06d564.mp4
+
+![Screenshot_20220910-181531](https://user-images.githubusercontent.com/79104875/189492447-940e8e2c-5a98-4c49-a43d-de53f33745ec.jpg)
