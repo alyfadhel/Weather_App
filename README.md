@@ -1,3 +1,7 @@
+![Screenshot_20220910-175454](https://user-images.githubusercontent.com/79104875/189491585-360018bb-b614-40e1-a5af-b3e0811ace15.jpg)
+![Screenshot_20220910-175522](https://user-images.githubusercontent.com/79104875/189491644-b7ef2867-a588-4980-897b-8ed58482cce6.jpg)
+![Screenshot_20220910-175517](https://user-images.githubusercontent.com/79104875/189491645-84e5e4f6-48d0-46eb-b1aa-e30d095533a1.jpg)
+![Screenshot_20220910-175500](https://user-images.githubusercontent.com/79104875/189491646-94694426-3ad6-4d59-94c5-725fdff80e78.jpg)
 # weather_app ui 
 Using bloc statement
 Api: 
