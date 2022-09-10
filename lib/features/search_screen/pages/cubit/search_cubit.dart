@@ -15,6 +15,7 @@ class SearchCubit extends Cubit<SearchState> {
 
   final searchController = TextEditingController();
 
+
   List<dynamic> name = [];
   getSearch(dynamic value,context) {
     emit(WeatherAppSearchLoadingState());

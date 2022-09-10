@@ -12,7 +12,6 @@ class WeatherAppCubit extends Cubit<WeatherAppStates> {
   WeatherAppCubit() : super(WeatherAppInitialState());
 
   static WeatherAppCubit get(context) => BlocProvider.of(context);
-
   WeatherModel? weatherModel;
    getData(String initValue)async {
     emit(WeatherAppLoadingState());
