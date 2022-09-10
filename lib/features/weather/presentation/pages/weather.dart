@@ -96,7 +96,7 @@ class _WeatherScreenState extends State<WeatherScreen> {
     );
   }
 
-  Widget getTemp(WeatherModel weatherModel, context) => Container(
+  Widget getTemp(WeatherModel model, context) => Container(
         alignment: AlignmentDirectional.center,
         padding: const EdgeInsets.all(20.0),
         child: SingleChildScrollView(
@@ -112,14 +112,14 @@ class _WeatherScreenState extends State<WeatherScreen> {
                 child: Column(
                   children: [
                     Text(
-                      '${weatherModel.sys!.country}',
+                      '${model.sys!.country}',
                       style: Theme.of(context).textTheme.headline3!.copyWith(
                             color: Colors.white.withOpacity(.7),
                             fontWeight: FontWeight.w800,
                           ),
                     ),
                     Text(
-                      '${weatherModel.name}',
+                      '${model.name}',
                       style: Theme.of(context).textTheme.bodyLarge!.copyWith(
                             color: Colors.white.withOpacity(
                               .4,
@@ -133,7 +133,7 @@ class _WeatherScreenState extends State<WeatherScreen> {
                         Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: Text(
-                            'Feels Like : ${weatherModel.main!.feelsLike!.round() - 273.15.round()}',
+                            'Feels Like : ${model.main!.feelsLike!.round() - 273.15.round()}',
                             style:
                                 Theme.of(context).textTheme.bodyLarge!.copyWith(
                                       color: Colors.white.withOpacity(
@@ -156,7 +156,7 @@ class _WeatherScreenState extends State<WeatherScreen> {
                       ],
                     ),
                     Text(
-                      'Humidity : ${weatherModel.main!.humidity}',
+                      'Humidity : ${model.main!.humidity}',
                       style: Theme.of(context).textTheme.bodyLarge!.copyWith(
                             color: Colors.white.withOpacity(
                               .4,
@@ -165,7 +165,7 @@ class _WeatherScreenState extends State<WeatherScreen> {
                           ),
                     ),
                     Text(
-                      'Pressure  : ${weatherModel.main!.pressure}',
+                      'Pressure  : ${model.main!.pressure}',
                       style: Theme.of(context).textTheme.bodyLarge!.copyWith(
                             color: Colors.white.withOpacity(
                               .4,
@@ -185,7 +185,7 @@ class _WeatherScreenState extends State<WeatherScreen> {
                             Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: Text(
-                                'Temp Min : ${weatherModel.main!.tempMin!.round() - 273.15.round()}',
+                                'Temp Min : ${model.main!.tempMin!.round() - 273.15.round()}',
                                 style: Theme.of(context)
                                     .textTheme
                                     .bodyLarge!
@@ -220,7 +220,7 @@ class _WeatherScreenState extends State<WeatherScreen> {
                             Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: Text(
-                                'Temp Max : ${weatherModel.main!.tempMax!.round() - 273.15.round()}',
+                                'Temp Max : ${model.main!.tempMax!.round() - 273.15.round()}',
                                 style: Theme.of(context)
                                     .textTheme
                                     .bodyLarge!
@@ -252,7 +252,7 @@ class _WeatherScreenState extends State<WeatherScreen> {
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
                         Text(
-                          'Deg : ${weatherModel.wind!.deg}',
+                          'Deg : ${model.wind!.deg}',
                           style:
                               Theme.of(context).textTheme.bodyLarge!.copyWith(
                                     color: Colors.white.withOpacity(
@@ -265,7 +265,7 @@ class _WeatherScreenState extends State<WeatherScreen> {
                           width: 15.0,
                         ),
                         Text(
-                          'Speed : ${weatherModel.wind!.speed}',
+                          'Speed : ${model.wind!.speed}',
                           style:
                               Theme.of(context).textTheme.bodyLarge!.copyWith(
                                     color: Colors.white.withOpacity(
@@ -303,7 +303,7 @@ class _WeatherScreenState extends State<WeatherScreen> {
                                 Padding(
                                   padding: const EdgeInsets.all(8.0),
                                   child: Text(
-                                    '${weatherModel.main!.temp!.round() - 273.15.round()}',
+                                    '${model.main!.temp!.round() - 273.15.round()}',
                                     style: Theme.of(context)
                                         .textTheme
                                         .headline2!
@@ -360,9 +360,11 @@ class _WeatherScreenState extends State<WeatherScreen> {
                       // shrinkWrap: true,
                       physics: const BouncingScrollPhysics(),
                       itemBuilder: (context, index) => getForecast(
+                          context,
                           WeatherAppCubit.get(context)
                               .forecastModel!
-                              .list![index],context,),
+                              .list![index],
+                          WeatherAppCubit.get(context).weatherModel!),
                       separatorBuilder: (context, index) => const SizedBox(
                         width: 15.0,
                       ),
@@ -401,7 +403,7 @@ class _WeatherScreenState extends State<WeatherScreen> {
                           ),
                         ),
                         Text(
-                          'Sunrise : ${DateTime.fromMillisecondsSinceEpoch(weatherModel.sys!.sunrise! * 1000)}',
+                          'Sunrise : ${DateTime.fromMillisecondsSinceEpoch(model.sys!.sunrise! * 1000)}',
                           style: Theme.of(context)
                               .textTheme
                               .bodyMedium!
@@ -424,7 +426,7 @@ class _WeatherScreenState extends State<WeatherScreen> {
                           ),
                         ),
                         Text(
-                          'Sunset : ${DateTime.fromMillisecondsSinceEpoch(weatherModel.sys!.sunset! * 1000)}',
+                          'Sunset : ${DateTime.fromMillisecondsSinceEpoch(model.sys!.sunset! * 1000)}',
                           style: Theme.of(context)
                               .textTheme
                               .bodyMedium!
@@ -443,7 +445,7 @@ class _WeatherScreenState extends State<WeatherScreen> {
         ),
       );
 
-  Widget getForecast(ListModel listModel, context,) {
+  Widget getForecast(context, ListModel listModel, WeatherModel model) {
     DateTime day = DateTime.parse(listModel.dtTxt!);
     String stringDay = DateFormat("EEEE").format(day);
     DateTime date = DateTime.parse(listModel.dtTxt!);
